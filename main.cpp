@@ -6,7 +6,8 @@ extern std::vector<sf::CircleShape> circles_list;
 extern std::vector<sf::RectangleShape> crosses_list;
 int main() {
     std::vector<sf::RectangleShape> rectangles = create_grid();
-    std::vector<sf::CircleShape> circles;  
+    std::vector<sf::CircleShape> circles=create_circle( 450, 450);
+    // std::vector<sf::RectangleShape> crosses=create_cross(450, 450);  
 
     sf::RenderWindow window(sf::VideoMode({win_width, win_height}), "Tic Tac Toe");
 
@@ -45,6 +46,9 @@ int main() {
         for (const auto& cir : circles) {
             window.draw(cir);
         }
+        // for (const auto& cross : crosses) {
+        //     window.draw(cross);
+        // }
         window.display();
     }
 

@@ -25,17 +25,17 @@ std::pair<int, int> cell_selector(int x, int y)
     if (p1_turn)
     {
         create_circle(center_x, center_y);
-        circles_list.push_back(create_circle(center_x, center_y));
+       // circles_list.push_back(create_circle(center_x, center_y));
         p1_turn = false;
         p2_turn = true;
     }
-    else
-    {
-        create_cross(center_x, center_y);
-        
-        p1_turn = true;
-        p2_turn = false;
-    }
+    // else
+    // {
+    //     create_cross(center_x, center_y);
+    //     //crosses_list.push_back(create_cross(center_x, center_y));
+    //     p1_turn = true;
+    //     p2_turn = false;
+    // }
 
     return {col, row};  // Now returning std::pair<int, int>
 }
