@@ -1,4 +1,5 @@
-
+#ifndef GLOBAL_H
+#define GLOBAL_H
 // Window settings
 int win_width = 900;
 int win_height = 900;
@@ -9,7 +10,12 @@ int grid_size = 3;
 bool p1_turn = true;
 bool p2_turn = false;
 
-// Lists to store shapes
+//Grid Status
+char grid[3][3] = {'0', '0', '0',
+                   '0', '0', '0',
+                   '0', '0', '0'};
+
+#endif // GLOBAL_H
 
 
 
