@@ -11,7 +11,7 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode({win_width, win_height}), "Tic Tac Toe");
 
-    while (window.isOpen()) {
+    while (window.isOpen() && !end_game) {
         while (auto event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>()) 
                 window.close();

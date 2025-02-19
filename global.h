@@ -9,6 +9,7 @@ int grid_size = 3;
 // Game state
 bool p1_turn = true;
 bool p2_turn = false;
+bool end_game = false;
 
 //Grid Status
 char grid[3][3] = {'0', '0', '0',

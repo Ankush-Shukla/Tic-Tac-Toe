@@ -6,7 +6,35 @@
 #include <iostream>
 #include "draw.hpp"
 
+//check if the game has been won
+void win_condition(){
+    //checking for horizontal win
+    for (int i = 0; i < 3; i++){
+        if (grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2] && grid[i][0] != '0'){
+            std::cout << "Player " << grid[i][0] << " wins!" << std::endl;
+            end_game = true;
+        }
+        
+    }
+    //checking for vertical win
+    for (int i = 0; i < 3; i++){
+        if (grid[0][i] == grid[1][i] && grid[1][i] == grid[2][i] && grid[0][i] != '0'){
+            std::cout << "Player " << grid[0][i] << " wins!" << std::endl;
+            end_game = true;
+        }
+        
+    }
+    //checking for diagonal win
+    if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2] && grid[0][0] != '0'){
+        std::cout << "Player " << grid[0][0] << " wins!" << std::endl;
+        end_game = true;
+    }
+    if (grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0] && grid[0][2] != '0'){
+        std::cout << "Player " << grid[0][2] << " wins!" << std::endl;
+        end_game = true;
+    }   
 
+}
 // Lists to store drawn shapes
 std::vector<sf::CircleShape> circles_list;
 std::vector<sf::RectangleShape> crosses_list;
@@ -29,6 +57,7 @@ std::pair<int, int> cell_selector(int x, int y)
         p1_turn = false;
         p2_turn = true;
         grid[row][col] = 'O';
+        win_condition();
     } 
     else if (p2_turn && grid[row][col] == '0' && grid[row][col] != 'X' && grid[row][col] != 'O') {
         std::vector<sf::RectangleShape> newCross = create_cross(center_x, center_y);
@@ -36,6 +65,7 @@ std::pair<int, int> cell_selector(int x, int y)
         p1_turn = true;
         p2_turn = false;
         grid[row][col] = 'X';
+        win_condition();
     }
     else {
         std::cout << "Cell [" << row << "," << col << "] is already occupied" << std::endl;
@@ -48,6 +78,7 @@ std::pair<int, int> cell_selector(int x, int y)
     }
 return {col, row};  // Return the selected cell position
 }
+ 
 
 
 
