@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "draw.hpp"
+#include <random>
 
 //check if the game has been won
 void win_condition(){
@@ -33,11 +34,43 @@ void win_condition(){
         std::cout << "Player " << grid[0][2] << " wins!" << std::endl;
         end_game = true;
     }   
+    //checking for draw
+    int count = 0;
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            if (grid[i][j] != '0' && !end_game){
+                count++;
+            }
+        }
+    }
+    if (count == 9){
+        std::cout << "It's a draw!" << std::endl;
+        end_game = true;
+    }
+
+}
+std::vector<sf::CircleShape> circles_list;
+std::vector<sf::RectangleShape> crosses_list;
+void ai_player(){
+    srand(time(0));
+    int row = rand() % 3;
+    int col = rand() % 3;
+    while (grid[row][col] != '0'){
+        row = rand() % 3;
+        col = rand() % 3;
+    }
+    float center_x = col * cell_size + (cell_size / 2);
+    float center_y = row * cell_size + (cell_size / 2);
+    std::vector<sf::RectangleShape> newCross = create_cross(center_x, center_y);
+    crosses_list.insert(crosses_list.end(), newCross.begin(), newCross.end());
+    p1_turn = true;
+    p2_turn = false;
+    grid[row][col] = 'X';
+    win_condition();
 
 }
 // Lists to store drawn shapes
-std::vector<sf::CircleShape> circles_list;
-std::vector<sf::RectangleShape> crosses_list;
+
 
 std::pair<int, int> cell_selector(int x, int y)
 {
@@ -60,11 +93,12 @@ std::pair<int, int> cell_selector(int x, int y)
         win_condition();
     } 
     else if (p2_turn && grid[row][col] == '0' && grid[row][col] != 'X' && grid[row][col] != 'O') {
-        std::vector<sf::RectangleShape> newCross = create_cross(center_x, center_y);
-        crosses_list.insert(crosses_list.end(), newCross.begin(), newCross.end());
-        p1_turn = true;
-        p2_turn = false;
-        grid[row][col] = 'X';
+        // std::vector<sf::RectangleShape> newCross = create_cross(center_x, center_y);
+        // crosses_list.insert(crosses_list.end(), newCross.begin(), newCross.end());
+        // p1_turn = true;
+        // p2_turn = false;
+        // grid[row][col] = 'X';
+        ai_player();
         win_condition();
     }
     else {

@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "global.h"  // Ensure p1_turn, p2_turn are declared here
+#include "global.hpp"  // Ensure p1_turn, p2_turn are declared here
 
 std::vector<sf::RectangleShape> create_grid()
 {

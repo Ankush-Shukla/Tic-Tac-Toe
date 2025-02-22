@@ -16,7 +16,8 @@ int main() {
             if (event->is<sf::Event::Closed>()) 
                 window.close();
 
-            // Handle left mouse button press
+            // Handle left mouse button press for the actual player
+    
             if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>()) {
                 if (mouseButtonPressed->button == sf::Mouse::Button::Left) {
                     std::cout << "Mouse x: " << mouseButtonPressed->position.x << std::endl;
@@ -24,7 +25,15 @@ int main() {
 
                     // ✅ Get cell position from `cell_selector`
                     std::pair<int, int> cellPos = cell_selector(mouseButtonPressed->position.x, mouseButtonPressed->position.y);
+
                 }
+                
+                }
+            // Handle AI player
+            else if(p2_turn){
+                    ai_player();
+                    p2_turn = false;
+                    p1_turn = true;
             }
         }
 
