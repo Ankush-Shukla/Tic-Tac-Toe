@@ -24,7 +24,7 @@ bool is_draw()
     return true;              // No empty cells, it's a draw
 }
 
-// ✅ Check if the game has been won
+// Check if the game has been won
 char win_condition() {
     // Check horizontal wins
     for (int i = 0; i < 3; i++) {
@@ -44,7 +44,7 @@ char win_condition() {
         return grid[0][0];  // Diagonal win
     if ((grid[0][2] == 'X' || grid[0][2] == 'O') &&
          grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0])
-        return grid[0][2];  // Anti-diagonal win
+        return grid[0][2];  // diagonal win
 
     if (is_draw())
         return 'T';  // Tie game
@@ -169,11 +169,6 @@ std::pair<int, int> cell_selector(int x, int y)
     }
     else if (p2_turn && grid[row][col] == '0' && grid[row][col] != 'X' && grid[row][col] != 'O')
     {
-        // std::vector<sf::RectangleShape> newCross = create_cross(center_x, center_y);
-        // crosses_list.insert(crosses_list.end(), newCross.begin(), newCross.end());
-        // p1_turn = true;
-        // p2_turn = false;
-        // grid[row][col] = 'X';
         ai_player();
         win_condition();
     }

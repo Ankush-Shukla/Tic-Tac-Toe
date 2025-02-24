@@ -65,4 +65,5 @@ std::vector<sf::RectangleShape> create_cross(float x, float y)
     return cross;
 }
 
+
 #endif // DRAW_HPP

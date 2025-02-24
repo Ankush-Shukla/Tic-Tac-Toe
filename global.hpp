@@ -15,6 +15,8 @@ bool end_game = false;
 char grid[3][3] = {'0', '0', '0',
                    '0', '0', '0',
                    '0', '0', '0'};
-//Game Sounds
+
+int winningType = -1;  // 0: horizontal, 1: vertical, 2: diagonal, 3: anti-diagonal
+int winningIndex = -1; // row or column index (or unused for diagonals)
 
 #endif // GLOBAL_H

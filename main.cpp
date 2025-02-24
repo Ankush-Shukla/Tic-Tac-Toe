@@ -62,7 +62,7 @@ int main()
             }
             else if (p2_turn)
             {
-                std::this_thread::sleep_for(std::chrono::milliseconds(300));
+                std::this_thread::sleep_for(std::chrono::milliseconds(450));
                 playerX.play();
                 ai_player();
                 p2_turn = false;
